@@ -1,25 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ObjectHit : MonoBehaviour
 {
-    private MeshRenderer meshRenderer;
-    private void Start()
+    private MeshRenderer _meshRenderer;
+
+    private void Awake()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
+        _meshRenderer = GetComponent<MeshRenderer>();
+        if (_meshRenderer == null)
+        {
+            Debug.LogError($"MeshRenderer component is missing on {gameObject.name}");
+        }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             HandleObjectHit();
         }
     }
+
     private void HandleObjectHit()
     {
-        meshRenderer.material.color = Color.red;
+        if (_meshRenderer != null)
+        {
+            _meshRenderer.material.color = Color.red;
+        }
+
         gameObject.tag = "Hit";
     }
 }

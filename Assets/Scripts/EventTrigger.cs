@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class EventTrigger : MonoBehaviour
 {
-    [SerializeField] private GameObject[] obstacles = null;
+    [SerializeField]
+    private GameObject[] obstacles = null;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,16 +18,12 @@ public class EventTrigger : MonoBehaviour
     {
         foreach (var obstacle in obstacles)
         {
-            MeshRenderer renderer = obstacle.GetComponent<MeshRenderer>();
-
-            if (renderer != null)
+            if (obstacle.TryGetComponent(out MeshRenderer renderer))
             {
                 renderer.enabled = true;
             }
 
-            Rigidbody rigidbody = obstacle.GetComponent<Rigidbody>();
-
-            if (rigidbody != null)
+            if (obstacle.TryGetComponent(out Rigidbody rigidbody))
             {
                 rigidbody.useGravity = true;
             }

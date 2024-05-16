@@ -2,35 +2,42 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public bool isGamePaused = false;
-    public GameObject panelStart;
-    public GameObject panelFinish;
-
-    public TextMeshProUGUI textFinish;
-
-    Score score;
+    [SerializeField] private bool isGamePaused = false;
+    [SerializeField] private GameObject panelStart;
+    [SerializeField] private GameObject panelFinish;
+    [SerializeField] private TextMeshProUGUI textFinish;
+    private Score score;
 
     private void Start()
     {
         score = FindObjectOfType<Score>();
-        panelStart.SetActive(true);
+
+        if (panelStart != null)
+        {
+            panelStart.SetActive(true);
+        }
+
         PauseGame();
     }
 
-    void Update()
+    private void Update()
     {
-        if (panelFinish.activeSelf)
+        if (panelFinish != null && panelFinish.activeSelf)
         {
             PauseGame();
         }
-
         else if (IsPlayerMoving() && isGamePaused)
         {
             StartGame();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RestartGame();
         }
     }
 
@@ -43,31 +50,55 @@ public class GameManager : MonoBehaviour
     {
         if (score != null)
         {
-            textFinish.text = "You've collided with an object this many times: " + score.hits + "\n" + textFinish.text;
+            textFinish.text = $"You collided with an object {score._hitCount} times.\nThat's all, folks!\n(Press R to restart the game.)";
         }
         else
         {
-            textFinish.text = "You've collided with an object this many times: N/A" + "\n" + textFinish.text;
+            textFinish.text = "You collided with an object this many times: N/A\nThat's all, folks!\n(Press R to restart the game.)";
         }
-        panelStart.SetActive(false);
-        panelFinish.SetActive(true);
+
+        if (panelStart != null)
+        {
+            panelStart.SetActive(false);
+        }
+
+        if (panelFinish != null)
+        {
+            panelFinish.SetActive(true);
+        }
+
         PauseGame();
     }
 
     private void StartGame()
     {
-        panelStart.SetActive(false);
-        panelFinish.SetActive(false);
+        if (panelStart != null)
+        {
+            panelStart.SetActive(false);
+        }
+
+        if (panelFinish != null)
+        {
+            panelFinish.SetActive(false);
+        }
+
         ResumeGame();
     }
+
     private void PauseGame()
     {
         Time.timeScale = 0;
         isGamePaused = true;
     }
+
     private void ResumeGame()
     {
         Time.timeScale = 1;
         isGamePaused = false;
+    }
+
+    private void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

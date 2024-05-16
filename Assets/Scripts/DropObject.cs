@@ -1,42 +1,48 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(MeshRenderer), typeof(Rigidbody))]
 public class DropObject : MonoBehaviour
 {
-    MeshRenderer meshRenderer;
-    Rigidbody rigidBody;
-    [SerializeField] float timeToWait = 0;
-    private bool hasDropped = false;
+    private MeshRenderer _meshRenderer;
+    private Rigidbody _rigidBody;
+    [SerializeField] private float timeToWait = 0f;
+    private bool _hasDropped = false;
 
-    void Start()
+    private void Awake()
     {
         InitializeComponents();
         DisableObject();
     }
+
     private void InitializeComponents()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
-        rigidBody = GetComponent<Rigidbody>();
-    }
-    private void DisableObject()
-    {
-        meshRenderer.enabled = false;
-        rigidBody.useGravity = false;
+        _meshRenderer = GetComponent<MeshRenderer>();
+        _rigidBody = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    private void DisableObject()
     {
-        if (Time.time > timeToWait && timeToWait != 0 && !hasDropped)
+        _meshRenderer.enabled = false;
+        _rigidBody.useGravity = false;
+    }
+
+    private void Update()
+    {
+        if (ShouldDropObject())
         {
             DropObjectNow();
         }
-
     }
+
+    private bool ShouldDropObject()
+    {
+        return Time.time > timeToWait && !_hasDropped && timeToWait > 0f;
+    }
+
     private void DropObjectNow()
     {
-        meshRenderer.enabled = true;
-        rigidBody.useGravity = true;
-        hasDropped = true;
+        _meshRenderer.enabled = true;
+        _rigidBody.useGravity = true;
+        _hasDropped = true;
     }
 }

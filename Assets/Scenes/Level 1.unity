@@ -867,6 +867,7 @@ MonoBehaviour:
   panelStart: {fileID: 1448061669}
   panelFinish: {fileID: 508360786}
   textFinish: {fileID: 1570959868}
+  debugText: {fileID: 0}
 --- !u!4 &371065286
 Transform:
   m_ObjectHideFlags: 0
@@ -1529,7 +1530,7 @@ GameObject:
   - component: {fileID: 614316091}
   - component: {fileID: 614316090}
   m_Layer: 0
-  m_Name: EventTrigger (7)
+  m_Name: FinishTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1617,8 +1618,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614316089}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8, y: 0.25, z: 8.88}
-  m_LocalScale: {x: 4, y: 1, z: 1}
+  m_LocalPosition: {x: 8, y: 0.25, z: 8}
+  m_LocalScale: {x: 1.9, y: 1, z: 1.9}
   m_Children: []
   m_Father: {fileID: 1291578390}
   m_RootOrder: 7
@@ -3682,6 +3683,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spinner (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8437516965447906954, guid: cd42ce0b32c839f4299fc455c2486b5a, type: 3}
+      propertyPath: rotationSpeedY
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 8437516965447906955, guid: cd42ce0b32c839f4299fc455c2486b5a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.75
@@ -3942,10 +3947,10 @@ RectTransform:
   m_Father: {fileID: 508360787}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 0, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1570959868
 MonoBehaviour:
@@ -4030,7 +4035,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 25, y: 25, z: 25, w: 25}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4228,6 +4233,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spinner (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8437516965447906954, guid: cd42ce0b32c839f4299fc455c2486b5a, type: 3}
+      propertyPath: rotationSpeedY
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 8437516965447906955, guid: cd42ce0b32c839f4299fc455c2486b5a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.25
@@ -4306,10 +4315,10 @@ RectTransform:
   m_Father: {fileID: 1448061670}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 0, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1795239392
 MonoBehaviour:
@@ -4394,7 +4403,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 25, y: 25, z: 25, w: 25}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5272,6 +5281,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spinner (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8437516965447906954, guid: cd42ce0b32c839f4299fc455c2486b5a, type: 3}
+      propertyPath: rotationSpeedY
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 8437516965447906955, guid: cd42ce0b32c839f4299fc455c2486b5a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -5430,9 +5443,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6100550522858302264, guid: 8a0530480e24f56448a7fa792987e135, type: 3}
+      propertyPath: moveSpeed
+      value: 8.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6100550522858302265, guid: 8a0530480e24f56448a7fa792987e135, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100550522858302267, guid: 8a0530480e24f56448a7fa792987e135, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a0530480e24f56448a7fa792987e135, type: 3}
@@ -5499,6 +5520,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 7.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6935501944926181165, guid: f829c2ab434a9474bb3dc72a99cef841, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6935501944926181167, guid: f829c2ab434a9474bb3dc72a99cef841, type: 3}
       propertyPath: m_Name
       value: Obstacle
@@ -5515,6 +5540,18 @@ PrefabInstance:
     - target: {fileID: 8437516965447906951, guid: cd42ce0b32c839f4299fc455c2486b5a, type: 3}
       propertyPath: m_Name
       value: Spinner
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437516965447906954, guid: cd42ce0b32c839f4299fc455c2486b5a, type: 3}
+      propertyPath: rotationSpeedX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437516965447906954, guid: cd42ce0b32c839f4299fc455c2486b5a, type: 3}
+      propertyPath: rotationSpeedY
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437516965447906954, guid: cd42ce0b32c839f4299fc455c2486b5a, type: 3}
+      propertyPath: rotationSpeedZ
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8437516965447906955, guid: cd42ce0b32c839f4299fc455c2486b5a, type: 3}
       propertyPath: m_LocalPosition.x

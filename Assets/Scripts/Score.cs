@@ -4,18 +4,45 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-    public int hits;
-    private void OnCollisionEnter(Collision other)
+    public int _hitCount;
+    private HashSet<GameObject> collidedObjects;
+
+    private void Start()
     {
-        if (other.gameObject.tag != "Hit")
-        {
-            hits++;
-            UpdateScore();
-        }
+        collidedObjects = new HashSet<GameObject>();
     }
 
-    private void UpdateScore()
+    private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("You've collided with an object this many times: " + hits);
+        // Eğer daha önce bu obje ile çarpıştıysanız sayma
+        if (collidedObjects.Contains(collision.gameObject))
+        {
+            Debug.Log($"Collision detected with {collision.gameObject.name}, but it has already been counted before.");
+            return;
+        }
+
+        // İlk kez çarpışılan objeyi kaydedin
+        collidedObjects.Add(collision.gameObject);
+
+        // Çarpışma sayısını artır
+        _hitCount++;
+        UpdateScoreDisplay();
+    }
+
+    private void UpdateScoreDisplay()
+    {
+        Debug.Log($"You've collided with an object this many times: {_hitCount}");
+    }
+
+    public int GetHitCount()
+    {
+        return _hitCount;
+    }
+
+    public void ResetHitCount()
+    {
+        _hitCount = 0;
+        collidedObjects.Clear();
+        UpdateScoreDisplay();
     }
 }
